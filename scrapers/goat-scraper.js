@@ -1,5 +1,4 @@
 const got = require("got");
-const request = require("request");
 
 module.exports = {
   getLink: async function(shoe, callback) {

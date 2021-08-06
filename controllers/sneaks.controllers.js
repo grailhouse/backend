@@ -87,16 +87,6 @@ module.exports = class Sneaks {
     });
   }
 
-//   findAll(callback) {
-//     Sneaker.find()
-//       .then((sneaks) => {
-//         callback(null, sneaks);
-//       })
-//       .catch((err) => {
-//         callback(err, null);
-//       });
-//   }
-
   getMostPopular(count, callback) {
     getProducts("", count, function(error, products) {
       if (error) {
