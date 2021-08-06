@@ -1,4 +1,3 @@
-const Sneaker = require("../models/sneaker");
 const stockXScraper = require("../scrapers/stockx-scraper");
 const flightClubScraper = require("../scrapers/flightclub-scraper");
 const goatScraper = require("../scrapers/goat-scraper");
