@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-// const cors = require('cors');
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+const cors = require('cors');
+
+// use it before all route definitions
+app.use(cors({origin: 'http://localhost:8888'}));
+
+
 require('./routes/sneaks.routes.js')(app);
 require('dotenv').config();
 
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8888;
 mongoose.Promise = global.Promise;
 
 app.listen(port, function () {
