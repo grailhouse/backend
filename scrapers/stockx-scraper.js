@@ -1,5 +1,5 @@
 const got = require("got");
-const Sneaker = require("../models/sneaker.js");
+const Sneaker = require("../models/Sneaker.js");
 
 module.exports = {
   getProductsAndInfo: async function(key, count, callback) {
