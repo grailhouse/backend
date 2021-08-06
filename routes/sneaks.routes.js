@@ -1,15 +1,15 @@
 const SneaksAPI = require("../controllers/sneaks.controllers");
+const router = require('express').Router();
 const sneaks = new SneaksAPI();
 
-module.exports = (app) => {
-  app.use(function(req, res, next) {
+  router.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
 
   // Grabs sneaker info from the database given the styleID
-  app.get("/id/:id", function(req, res) {
+  router.get("/id/:id", function(req, res) {
     sneaks.findOne(req.params.id, function (error, shoe) {
       if (error) {
         res.send("Product Not Found");
@@ -20,7 +20,7 @@ module.exports = (app) => {
   });
 
   // Grabs price maps from each site of a particular shoe
-  app.get("/id/:id/prices", function(req, res) {
+  router.get("/id/:id/prices", function(req, res) {
     sneaks.getProductPrices(req.params.id, 1, function (error, products) {
       if (error) {
         res.send("Product Not Found");
@@ -31,7 +31,7 @@ module.exports = (app) => {
   });
 
   // grabs 10 of the most popular sneakers
-  app.get("/home", function(req, res) {
+  router.get("/home", function(req, res) {
     const count = req.query.count || 150;
     // if the user doesn't provide the query param, it defaults to 40
     sneaks.getMostPopular(count, function (error, products) {
@@ -44,7 +44,7 @@ module.exports = (app) => {
   });
 
   // grabs all of the most popular sneakers
-  app.get("/trending", function(req, res) {
+  router.get("/trending", function(req, res) {
     const count = req.query.count || 150;
     // if the user doesn't provide the query param, it defaults to 40
     sneaks.getMostPopular(count, function (error, products) {
@@ -57,7 +57,7 @@ module.exports = (app) => {
   });
 
   // Grabs all sneakers given a keyword/parameter
-  app.get("/search/:shoe", function(req, res) {
+  router.get("/search/:shoe", function(req, res) {
     const count = req.query.count || 150;
     // if the user doesn't provide the query param, it defaults to 40
     sneaks.getProducts(req.params.shoe, count, function (error, products) {
@@ -69,7 +69,7 @@ module.exports = (app) => {
     });
   });
   //  Grabs all sneakers in the database
-    // app.get('/shoes', function(req, res){
+    // router.get('/shoes', function(req, res){
     //     sneaks.findAll( function(error, products){
     //         if (error) {
     //             console.log(error)
@@ -81,7 +81,9 @@ module.exports = (app) => {
     // });
 
   // redirects root route to home page
-  app.get("/", function(req, res) {
+  router.get("/", function(req, res) {
     res.redirect("/home");
   });
-};
+
+
+  module.exports = router;
