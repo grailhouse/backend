@@ -1,13 +1,14 @@
 const server = require("./server");
 const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
+const uri = process.env.MONGODB_URI;
 require("dotenv").config();
 
 const port = process.env.PORT || 5001;
-// mongoose.Promise = global.Promise;
 
 const start = async () => {
     try {
-        mongoose.connect("mongodb://localhost:27017/test", {
+        mongoose.connect(uri, "mongodb://localhost:27017/test", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
