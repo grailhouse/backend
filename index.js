@@ -8,7 +8,7 @@ const port = process.env.PORT || 5001;
 
 const start = async () => {
     try {
-        mongoose.connect(uri, "mongodb://localhost:27017/test", {
+        mongoose.connect(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
