@@ -8,11 +8,14 @@ const port = process.env.PORT || 5001;
 
 const start = async () => {
     try {
-        mongoose.connect(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useCreateIndex: true,
-        });
+        mongoose.connect(
+            "mongodb+srv://stephenfre-founder:vXcxVDgrPMSPSGah@grailhouse-west.ldnn7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useCreateIndex: true,
+            }
+        );
         console.log("connected to mongodb");
     } catch (err) {
         console.log(err);
