@@ -20,6 +20,15 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 1024,
     },
+    closet: [
+        {
+            shoeName: String,
+            shoeId: String,
+            lowestResellPrice: {},
+            thumbnail: String,
+            deadstock: Boolean,
+        },
+    ],
 });
 
 const User = mongoose.model("User", userSchema);
