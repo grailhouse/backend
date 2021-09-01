@@ -24,7 +24,13 @@ const userSchema = new mongoose.Schema({
         {
             shoeName: String,
             shoeId: String,
-            lowestResellPrice: {},
+            lowestPrice: Number,
+            lowestResellPrice: {
+                stockX: Number,
+                stadiumGoods: Number,
+                goat: Number,
+                flightClub: Number,
+            },
             thumbnail: String,
             deadstock: Boolean,
         },

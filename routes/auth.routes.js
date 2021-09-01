@@ -38,6 +38,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body);
 
     User.findOne({ email }, function (err, user) {
         if (err) {
