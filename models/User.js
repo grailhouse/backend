@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
         {
             shoeName: String,
             shoeId: String,
+            styleId: String,
             lowestPrice: Number,
             lowestResellPrice: {
                 stockX: Number,

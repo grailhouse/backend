@@ -45,6 +45,7 @@
         "jsonwebtoken": "^8.5.1",
         "mongodb": "^3.6.2",
         "mongoose": "^5.10.3",
+        "npm": "^7.23.0",
         "request": "^2.88.2",
         "sneaks-api": "^1.1.1"
     }

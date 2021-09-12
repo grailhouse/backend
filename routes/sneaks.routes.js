@@ -21,7 +21,7 @@ router.get("/id/:id", function (req, res) {
 
 // Grabs price maps from each site of a particular shoe
 router.get("/id/:id/prices", function (req, res) {
-    sneaks.getProductPrices(req.params.id, 1, function (error, products) {
+    sneaks.getProductPrices(req.params.id.toUpperCase(), function (error, products) {
         if (error) {
             res.send("Product Not Found");
         } else {
