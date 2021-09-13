@@ -1,3 +1,4 @@
+const { string } = require("joi");
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -7,10 +8,16 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 50,
     },
-    email: {
+    username: {
         type: String,
         required: true,
         minlength: 5,
+        maxlength: 20,
+    },
+    email: {
+        type: String,
+        required: true,
+        minlength: 15,
         maxlength: 255,
         unique: true,
     },
@@ -18,7 +25,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 1024,
+        maxlength: 255,
+    },
+    shoeSize: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 4,
     },
     closet: [
         {

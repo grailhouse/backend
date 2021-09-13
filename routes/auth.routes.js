@@ -15,19 +15,21 @@ router.post("/register", async (req, res) => {
         res.status(400).send(error.details[0].message);
     }
 
-    const { name, email, password } = req.body;
+    const { name, username, email, password, shoeSize } = req.body;
 
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     let user = new User({
         name,
+        username,
         email,
         password: hashedPassword,
+        shoeSize,
     });
 
     user.save();
 
-    const token = generateToken(user.id, user.name, user.email);
+    const token = generateToken(user.id, user.name, user.username, user.email, user.shoeSize);
 
     res.status(201).json({
         message: "new user registered!",
@@ -51,7 +53,7 @@ router.post("/login", async (req, res) => {
                     res.status(400).send({ errors: [{ message: err }] });
                 }
                 if (result) {
-                    let token = generateToken(user.id, user.name, user.email);
+                    let token = generateToken(user.id, user.name, user.username, user.email, user.shoeSize);
                     res.json({
                         message: "Login Successful",
                         user,
@@ -62,6 +64,19 @@ router.post("/login", async (req, res) => {
         } else {
             res.status(500).json({
                 message: "sorry, but theres no user with that email!",
+            });
+        }
+    });
+});
+
+router.put("/:id", async (req, res) => {
+    let { id } = req.params;
+    User.findOneAndUpdate({ _id: id }, req.body, { new: true }, function (err, user) {
+        if (err) {
+            res.status(400).send({ errors: [{ message: err }] });
+        } else if (user) {
+            res.json({
+                user,
             });
         }
     });
