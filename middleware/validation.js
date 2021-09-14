@@ -6,7 +6,7 @@ function validateUser(user) {
         username: Joi.string().min(5).max(20).required(),
         email: Joi.string().min(15).max(255).required().email(),
         password: Joi.string().min(5).max(255).required(),
-        shoeSize: Joi.string().min(1).required(),
+        shoeSize: Joi.number().min(1).required(),
     });
     return schema.validate(user);
 }

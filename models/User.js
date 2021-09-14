@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
         maxlength: 255,
     },
     shoeSize: {
-        type: String,
+        type: Number,
         required: true,
         minlength: 1,
     },
