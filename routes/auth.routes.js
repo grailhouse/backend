@@ -70,6 +70,19 @@ router.post("/login", async (req, res) => {
     });
 });
 
+router.get("/:id", async (req, res) => {
+    let { id } = req.params;
+    User.findOne({ _id: id }, function (err, user) {
+        if (err) {
+            res.status(400).send({ errors: [{ message: err }] });
+        } else if (user) {
+            res.json({
+                user,
+            });
+        }
+    });
+});
+
 router.put("/:id", async (req, res) => {
     let { id } = req.params;
     User.findOneAndUpdate({ _id: id }, req.body, { new: true }, function (err, user) {
