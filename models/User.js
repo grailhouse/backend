@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
                 flightClub: Number,
             },
             thumbnail: String,
-            deadstock: Boolean,
+            deadstock: String,
         },
     ],
 });
